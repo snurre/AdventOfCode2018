@@ -5,7 +5,6 @@ import kotlin.math.max
 import kotlin.math.min
 
 class Day10 {
-    data class Point(val x: Int, val y: Int)
     data class Light(val start: Point, val velocity: Point) {
         fun getPos(t: Int): Point = Point(start.x + (velocity.x) * t, start.y + (velocity.y) * t)
     }

@@ -3,8 +3,6 @@ import java.io.File
 import kotlin.math.abs
 
 class Day06 {
-    data class Point(val x: Int, val y: Int)
-
     private val locations = File(this.javaClass.getResource("06.txt").path).readLines().map { s ->
         s.split(", ").let { p -> Point(p[0].toInt(), p[1].toInt()) }
     }

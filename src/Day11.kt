@@ -5,8 +5,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class Day11 {
-    data class Point(val x: Int, val y: Int)
-
     private val puzzleInput = 5468
     private val grid = {
         val grid = Array(300) { IntArray(300) }
@@ -47,7 +45,7 @@ class Day11 {
     @Test
     fun part2() {
         runBlocking(Dispatchers.Default) {
-            val results = mutableListOf<Deferred<Triple<Int, Day11.Point, Int>>>()
+            val results = mutableListOf<Deferred<Triple<Int, Point, Int>>>()
             for (s in 1..300) async { findMaxPower(s) }.let { results.add(it) }
             results.map { it.await() }.maxBy { it.third }!!.let {
                 println("${it.second.x},${it.second.y},${it.first}")

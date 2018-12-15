@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 class Day03 {
-    data class Point(val x: Int, val y: Int)
     data class Claim(
         val id: Int,
         val location: Point,

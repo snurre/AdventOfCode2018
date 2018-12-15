@@ -47,12 +47,6 @@ class Day13 {
         }
     }
 
-    data class Point(var x: Int, var y: Int) : Comparable<Point> {
-        override fun compareTo(other: Point): Int {
-            return compareValuesBy(this, other, { it.y }, { it.x })
-        }
-    }
-
     data class Cart(
         val id: Int,
         var location: Point,
@@ -65,8 +59,7 @@ class Day13 {
         }
 
         fun move(grid: Array<Array<Char>>) {
-            location.x += direction.dx
-            location.y += direction.dy
+            location = Point(location.x + direction.dx, location.y + direction.dy)
             val c = grid[location.y][location.x]
             if (c == '+') {
                 direction = direction.turn(nextTurnDirection)
