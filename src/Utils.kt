@@ -3,6 +3,10 @@ import kotlin.math.abs
 data class Point(val x: Int, val y: Int) : Comparable<Point> {
     val neighbours: List<Point>
         get() = listOf(Point(x, y - 1), Point(x - 1, y), Point(x + 1, y), Point(x, y + 1))
+    val up by lazy { neighbours[0]}
+    val left by lazy { neighbours[1]}
+    val right by lazy { neighbours[2]}
+    val down by lazy { neighbours[3]}
 
     override fun compareTo(other: Point): Int = compareValuesBy(this, other, { it.y }, { it.x })
     fun manhattan(other: Point): Int = abs(x - other.x) + abs(y - other.y)
