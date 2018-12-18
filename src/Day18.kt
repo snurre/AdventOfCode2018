@@ -7,41 +7,31 @@ class Day18 {
     private val open = '.'
     private val tree = '|'
     private val lumberyard = '#'
-    private val puzzleInput = File(this.javaClass.getResource("18.txt").path).readLines().map { it.toList() }
+    private val puzzleInput = File(this.javaClass.getResource("18.txt").path).readLines()
 
     private fun solve(minutes: Int): Int {
         var map = puzzleInput
         val seen = mutableMapOf(map to 0)
-        var firstRepeat: List<List<Char>>? = null
-        var t = 0
-        while (++t <= minutes) {
-            map = map.mapIndexed { y, row ->
-                row.mapIndexed { x, c ->
-                    // This is slower than a nested loop, but so much cooler
-                    val (trees, lumberyards) = (max(y - 1, 0)..min(y + 1, map.size - 1))
-                        .flatMap { yy -> (max(x - 1, 0)..min(x + 1, map[y].size - 1)).map { xx -> yy to xx } }
-                        .filter { it != y to x }
-                        .groupingBy { (yy, xx) -> map[yy][xx] }
-                        .eachCount()
-                        .let { (it[tree] ?: 0) to (it[lumberyard] ?: 0) }
-                    when (c) {
-                        open -> if (trees >= 3) tree else open
-                        tree -> if (lumberyards >= 3) lumberyard else tree
-                        lumberyard -> if (lumberyards >= 1 && trees >= 1) lumberyard else open
-                        else -> c
-                    }
-                }
+        var t = -1
+        while (++t < minutes) {
+            val m = seen.computeIfAbsent(map) { t }
+            if (m < t) {
+                t += (minutes - t) % (t - m)
             }
-            if (firstRepeat != null) {
-                if (map == firstRepeat) {
-                    val cycle = (t - seen[map]!!)
-                    t += ((minutes - t) / cycle) * cycle
+            map = map.mapIndexed { y, row ->
+                row.withIndex().joinToString("") { (x, c) ->
+                    val s = (max(0, y - 1)..min(map.size - 1, y + 1))
+                        .flatMap { yy -> (max(0, x - 1)..min(row.length - 1, x + 1)).map { xx -> map[yy][xx] } }
+                    when (c) {
+                        open -> if (s.count { it == tree } >= 3) tree else open
+                        tree -> if (s.count { it == lumberyard } >= 3) lumberyard else tree
+                        lumberyard -> if (s.count { it == lumberyard } >= 1 && s.count { it == tree } >= 1) lumberyard else open
+                        else -> c
+                    }.toString()
                 }
-            } else if (seen.putIfAbsent(map, t) != null) {
-                firstRepeat = map
             }
         }
-        return map.sumBy { row -> row.count { it == tree } } * map.sumBy { row -> row.count { it == lumberyard} }
+        return map.sumBy { row -> row.count { it == tree } } * map.sumBy { row -> row.count { it == lumberyard } }
     }
 
     @Test
