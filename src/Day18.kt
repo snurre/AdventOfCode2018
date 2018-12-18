@@ -16,12 +16,11 @@ class Day18 {
         while (++t < minutes) {
             val m = seen.computeIfAbsent(map) { t }
             if (m < t) {
-                t += (minutes - t) % (t - m)
+                t += (minutes - t - 1) % (t - m)
             }
             map = map.mapIndexed { y, row ->
                 row.withIndex().joinToString("") { (x, c) ->
-                    val s = (max(0, y - 1)..min(map.size - 1, y + 1))
-                        .flatMap { yy -> (max(0, x - 1)..min(row.length - 1, x + 1)).map { xx -> map[yy][xx] } }
+                    val s = (max(0, y - 1)..min(map.lastIndex, y + 1)).flatMap { yy -> (max(0, x - 1)..min(row.lastIndex,x + 1)).filterNot { xx -> yy == y && xx == x }.map { xx -> map[yy][xx] } }
                     when (c) {
                         open -> if (s.count { it == tree } >= 3) tree else open
                         tree -> if (s.count { it == lumberyard } >= 3) lumberyard else tree
