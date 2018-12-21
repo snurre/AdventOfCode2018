@@ -90,4 +90,25 @@ class Day21 {
             r[ip]++
         }
     }
+
+    @Test
+    fun reversed() {
+        val haltingValues = mutableSetOf<Int>()
+        var first = 0
+        var last = 0
+        var c = 0
+        while (true) {
+            var f = c or 65536
+            c = 2238642
+            while (f > 0) {
+                c = (((c + (f and 255)) and 16777215) * 65899) and 16777215
+                f = f shr 8
+            }
+            if (haltingValues.isEmpty()) first = c
+            if (!haltingValues.add(c)) break
+            last = c
+        }
+        println(first)
+        println(last)
+    }
 }
