@@ -7,7 +7,7 @@ class Day08 {
         val metadata: MutableList<Int> = mutableListOf()
     }
 
-    private val values = File(this.javaClass.getResource("08.txt").path).readText().trim().split(' ').map { it.toInt() }
+    private val values = File("resources/08.txt").readText().trim().split(' ').map { it.toInt() }
     private val root = getNode(0).second
 
     private fun getNode(i: Int): Pair<Int, Node> {

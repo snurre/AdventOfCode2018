@@ -3,7 +3,7 @@ import java.io.File
 
 class Day02 {
     private fun getBoxIds(): List<String> {
-        return File(this.javaClass.getResource("03.txt").path).readLines()
+        return File("resources/03.txt").readLines()
     }
 
     @Test

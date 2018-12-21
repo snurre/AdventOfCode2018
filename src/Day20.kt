@@ -10,7 +10,7 @@ class Day20 {
         var cur = Point(0, 0)
         rooms = mutableMapOf(cur to 0)
         val queue = ArrayDeque<Point>()
-        for (c in File(this.javaClass.getResource("20.txt").path).readText()) {
+        for (c in File("resources/20.txt").readText()) {
             when (c) {
                 '(' -> queue.add(cur)
                 ')' -> cur = queue.pollLast()

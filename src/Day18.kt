@@ -7,7 +7,7 @@ class Day18 {
     private val open = '.'
     private val tree = '|'
     private val lumberyard = '#'
-    private val puzzleInput = File(this.javaClass.getResource("18.txt").path).readLines()
+    private val puzzleInput = File("resources/18.txt").readLines()
 
     private fun solve(minutes: Int): Int {
         var map = puzzleInput

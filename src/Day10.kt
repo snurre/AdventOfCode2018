@@ -10,7 +10,7 @@ class Day10 {
     }
 
     val rx = Regex("position=< *(-?[0-9]+), *([-?0-9]+)> velocity=< *(-?[0-9]+), *([-?0-9]+)>")
-    private val lights = File(this.javaClass.getResource("10.txt").path).readLines().map { s ->
+    private val lights = File("resources/10.txt").readLines().map { s ->
         val m = rx.matchEntire(s)!!
         Light(
             Point(m.groupValues[1].toInt(), m.groupValues[2].toInt()),

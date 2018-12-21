@@ -10,7 +10,7 @@ class Day03 {
 
     private fun getClaims(): List<Claim> {
         val rx = Regex("#([0-9]+) @ ([0-9]+),([0-9]+): ([0-9]+)x([0-9]+)")
-        return File(this.javaClass.getResource("03.txt").path).useLines {
+        return File("resources/03.txt").useLines {
             it.map { s ->
                 val m = rx.matchEntire(s)!!
                 Claim(

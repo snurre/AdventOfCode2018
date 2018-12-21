@@ -3,7 +3,7 @@ import java.io.File
 
 class Day01 {
     private fun getNumbers(): List<Int> {
-        return File(this.javaClass.getResource("01.txt").path).useLines { it.map(String::toInt).toList() }
+        return File("resources/01.txt").useLines { it.map(String::toInt).toList() }
     }
 
     @Test

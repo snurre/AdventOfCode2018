@@ -3,7 +3,7 @@ import java.io.File
 
 class Day12 {
     private val initialState = "##..##..#.##.###....###.###.#.#.######.#.#.#.#.##.###.####..#.###...#######.####.##...#######.##..#"
-    private val rules: Map<CharSequence, CharSequence> = File(this.javaClass.getResource("12.txt").path).readLines().associate { it.split(" => ", limit = 2).let { p -> p[0] to p[1] } }
+    private val rules: Map<CharSequence, CharSequence> = File("resources/12.txt").readLines().associate { it.split(" => ", limit = 2).let { p -> p[0] to p[1] } }
 
     private fun solve(n: Long): Long {
         val states = mutableMapOf<String, Pair<Long, Long>>()

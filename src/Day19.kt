@@ -3,7 +3,7 @@ import java.io.File
 
 class Day19 {
 
-    private val lines = File(this.javaClass.getResource("19.txt").path).readLines()
+    private val lines = File("resources/19.txt").readLines()
     private val ip = lines.first().removePrefix("#ip ").toInt()
     private val operations = mapOf<String, (IntArray, Int, Int, Int) -> Unit>(
         "addr" to { r, a, b, c -> r[c] = r[a] + r[b] },

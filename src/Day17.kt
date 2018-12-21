@@ -12,7 +12,7 @@ class Day17 {
 
     init {
         fun String.toIntRange() = this.split('=')[1].split("..").map { r -> r.toInt() }.let { r -> r[0]..(if (r.size > 1) r[1] else r[0]) }
-        val clayTiles = File(this.javaClass.getResource("17.txt").path).readLines().map { it.split(", ").sorted().let { p -> p[0].toIntRange() to p[1].toIntRange() } }
+        val clayTiles = File("resources/17.txt").readLines().map { it.split(", ").sorted().let { p -> p[0].toIntRange() to p[1].toIntRange() } }
 
         val size = Point(clayTiles.maxBy { c -> c.first.last }!!.first.last, clayTiles.maxBy { c -> c.second.last }!!.second.last)
         map = Array(size.y + 2) { CharArray(size.x + 2) { ' ' } }

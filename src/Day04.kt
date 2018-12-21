@@ -8,7 +8,7 @@ class Day04 {
         var currentGuard = 0
         var currentStart = 0
 
-        File(this.javaClass.getResource("04.txt").path).readLines().sorted().map { s ->
+        File("resources/04.txt").readLines().sorted().map { s ->
             val currentMinute = s.substring(15, 17).toInt()
             val event = s.substring(19, s.length)
             when (event) {

@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 class Day05 {
-    private val data = File(this.javaClass.getResource("05.txt").path).readText().trim()
+    private val data = File("resources/05.txt").readText().trim()
     private val units = ('a'..'z').let {
         val s = hashSetOf<String>()
         it.forEach { c ->

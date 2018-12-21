@@ -11,7 +11,7 @@ class Day07 {
         override fun compareTo(other: Step): Int = compareValuesBy(this, other) { it.c }
     }
 
-    private val steps = File(this.javaClass.getResource("07.txt").path).useLines {
+    private val steps = File("resources/07.txt").useLines {
         val steps = mutableMapOf<Char, Step>()
         it.map { s -> s.split(' ').let { p -> p[1][0] to p[7][0] } }.forEach { p ->
             steps.computeIfAbsent(p.second) { Step(p.second) }

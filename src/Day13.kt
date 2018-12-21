@@ -74,7 +74,7 @@ class Day13 {
     private val carts: List<Cart>
 
     init {
-        val t = File(this.javaClass.getResource("13.txt").path).readLines()
+        val t = File("resources/13.txt").readLines()
         val g = Array(t.size) { Array(t[0].length) { ' ' } }
         val v = setOf('\\', '|', '/', '+')
         val h = setOf('\\', '-', '/', '+')

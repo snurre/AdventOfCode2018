@@ -22,7 +22,7 @@ class Day15 {
     private val allFighters: List<Fighter>
 
     init {
-        val lines = File(this.javaClass.getResource("15.txt").path).readLines()
+        val lines = File("resources/15.txt").readLines()
         map = Array(lines.size) { CharArray(lines[0].length) { ' ' } }
         allFighters = mutableListOf()
         for (y in 0 until lines.size) {

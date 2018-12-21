@@ -21,7 +21,7 @@ class Day16 {
             "eqri" to { r, i -> if (r[i[1]]!! == i[2]) 1 else 0 },
             "eqrr" to { r, i -> if (r[i[1]]!! == r[i[2]]!!) 1 else 0 }
     )
-    private val lines = File(this.javaClass.getResource("16.txt").path).readLines()
+    private val lines = File("resources/16.txt").readLines()
     private val trainingInstructions = lines.withIndex().filter { it.value.startsWith("Before") }.map { (i, v) ->
         Triple(
                 v.substring(9, 19).split(", ").map { it.toInt() }.toIntArray(),
